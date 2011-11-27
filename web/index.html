@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>Command Line Interface</title>
+
+<form action='javascript:void(0)' id='cli'>
+	<input id='input' type='text'>
+	<pre id='output'></pre>
+</form>
+
+<script src='js/scout.js'></script>
+<script>
+	Scout('#cli').on('submit', function(query){
+		query.action = 'exec';
+		query.data = {command: Scout('#input').value};
+		query.resp = function(data){
+			Scout('#output').textContent=data.result;
+			Scout('#input').value='';	
+		};
+	});
+</script>
